@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+{% block title %} Search {%endblock %}
+{% block body %}
+<h1>Related Pages</h1>
+<p style = "text-align:center"> search result for {{q}} :</p>
+<ul>
+  <!-- looping undered list of entries -->
+  {% for entry in entries %}
+  <a href="{% url 'entry' entry %}"><li>{{ entry }}</li></a>
+  {% empty %}
+    <!-- create a link for user to create a new page just hyperlink -->
+    <p style="text-align:center">Search results for " {{q}} " Not Found!
+      Click the Link to create a new page</p>
+      <div style = "text-align:center">
+        <a href="{% url 'create' %}"class="badge badge-dark stle">Create New Page</a>
+      </div>
+      
+  {% endfor %}
+</ul>
+
+{% endblock %}
